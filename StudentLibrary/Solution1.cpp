@@ -27,7 +27,7 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
 		case TemperatureUnits::CELSIUS:
 			switch(_to){
 				case TemperatureUnits::FAHRENHEIT:
-					result = 9 / 5 * (_value)+32;
+					result = 9.0f / 5.0f * (_value)+32;
 					break;
 				case TemperatureUnits::KELVIN:
 					result = _value + 273.15;
@@ -40,10 +40,10 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
 			switch (_to)
 			{
 				case TemperatureUnits::KELVIN:
-					result = 5 / 9 * (_value - 32) + 273.15;
+					result = 5.0f / 9.0f * (_value - 32) + 273.15;
 					break;
 				case TemperatureUnits::CELSIUS:
-					result = 5 / 9 * (_value - 32);
+					result = 5.0f / 9.0f * (_value - 32);
 					break;
 				default:
 					break;
@@ -55,7 +55,7 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
 			{
 				case TemperatureUnits::FAHRENHEIT:
 					std::cout << _value;
-					result = (9/5 * (_value - 273.15)) + 32;
+					result = 9.0f /5.0f * (_value - 273.15) + 32;
 					break;
 				case TemperatureUnits::CELSIUS:
 					result = _value - 273.15;
