@@ -1,5 +1,5 @@
 #include "Solution1.h"
-
+#include <iostream>
 // Don't fortget to enable the exercise in the SudentConfiguration.h file !
 #include "StudentConfiguration.h"
 #ifdef COMPILE_EXERCICE_1
@@ -21,34 +21,51 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
 	 *		Kelvin to Celsius �C = K - 273
 	 *		Fahrenheit to Kelvin K = 5/9 (�F - 32) + 273
 	 */
-	float result;
+	float result = 0.f;
+	result = _value;
 	switch(_from){
 		case TemperatureUnits::CELSIUS:
 			switch(_to){
 				case TemperatureUnits::FAHRENHEIT:
 					result = 9 / 5 * (_value)+32;
-					return result;
+					break;
 				case TemperatureUnits::KELVIN:
-					result = _value + 273;
-					return result;
+					result = _value + 273.15;
+					break;
+				default:
+					break;
 			}
-		case TemperatureUnits::KELVIN:
-			switch (_to)
-			{
-			case TemperatureUnits::FAHRENHEIT:
-				result = 9/5 * (_value - 273) + 32;
-			case TemperatureUnits::CELSIUS:
-				result = _value - 273;
-			}
+			break;
 		case TemperatureUnits::FAHRENHEIT:
 			switch (_to)
 			{
-			case TemperatureUnits::KELVIN:
-				result = 5/9  * (_value - 32) + 273;
-			case TemperatureUnits::CELSIUS:
-				result = 5/9 * (_value - 32);
+				case TemperatureUnits::KELVIN:
+					result = 5 / 9 * (_value - 32) + 273.15;
+					break;
+				case TemperatureUnits::CELSIUS:
+					result = 5 / 9 * (_value - 32);
+					break;
+				default:
+					break;
 			}
+			break;
+		// C'est quoi un fallthrough
+		case TemperatureUnits::KELVIN:
+			switch (_to)
+			{
+				case TemperatureUnits::FAHRENHEIT:
+					std::cout << _value;
+					result = (9/5 * (_value - 273.15)) + 32;
+					break;
+				case TemperatureUnits::CELSIUS:
+					result = _value - 273.15;
+					break;
+				default:
+					break;
+			}
+			break;
 	}
+	std::cout << result;
 	return result;
 }
 
